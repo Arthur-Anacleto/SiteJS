@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body{
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculadora {
+            background-color: white;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            margin: 5px;
+            background-color: #f4f4f4;
+        }
+        button:hover {
+            background-color: lightskyblue
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" id="display" readonly> 
+        <br>
+        <button onclick="adicionarNumero('7')">7</button>
+        <button onclick="adicionarNumero('8')">8</button>
+        <button onclick="adicionarNumero('9')">9</button>
+        <button onclick="adicionarNumero('*')">*</button>
+        <button onclick="limpar()">limpar</button>
+        <br>
+        <button onclick="adicionarNumero('4')">4</button>
+        <button onclick="adicionarNumero('5')">5</button>
+        <button onclick="adicionarNumero('6')">6</button>
+        <button onclick="adicionarNumero('-')">-</button>
+        <br>
+        <button onclick="adicionarNumero('1')">1</button>
+        <button onclick="adicionarNumero('2')">2</button>
+        <button onclick="adicionarNumero('3')">3</button>
+        <button onclick="adicionarNumero('+')">+</button>
+        <br>
+        <button onclick="adicionarNumero('.')">.</button>
+        <button onclick="adicionarNumero('0')">0</button>
+        <button onclick="adicionarNumero(',')">,</button>
+        <button onclick="calcular()">=</button>
+    </div>
+
+    <script>
+        let input = document.getElementById('display');
+        function adicionarNumero(num) {
+            input.value += num;
+        }
+        function calcular() {
+            try {
+                input.value = eval(input.value); 
+            } catch (e) {
+                input.value = "";  
+        }}
+        function limpar() {
+            input.value = '';  
+        }
+
+    </script>
+</body>
+</html>

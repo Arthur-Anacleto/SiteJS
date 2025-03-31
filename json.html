@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <style>
+        /* Estilos para o layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para os botões */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        /* Estilos para os parágrafos de resultado */
+        #resultado, #resultado2 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        /* Caixa centralizada para botões */
+        .button-container {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="button-container">
+            <button onclick="soma(10, 5, showParagrafo)">Mostrar em Parágrafo</button>
+            <button onclick="soma(10, 45, showAlert)">Mostrar em Pop-up</button>
+        </div>
+        <p id="resultado"></p>
+        <p id="resultado2"></p>
+    </div>
+
+    <script>
+        function soma(x, y, callback) {
+            let resultado = x + y;
+            callback(resultado);
+        }
+
+        function showParagrafo(valor) {
+            document.getElementById('resultado').innerHTML = `Resultado: ${valor}`;
+        }
+
+        function showAlert(valor) {
+            alert(`Resultado: ${valor}`);
+        }
+    </script>
+</body>
+</html>

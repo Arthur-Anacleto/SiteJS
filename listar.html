@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<style>
+</style>
+<body>
+    <a href="exercicios3.html">Voltar</a>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Clientes:</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="clientesTabela">
+            </tbody>
+        </table>
+        <a href="exercicios3.html" class="btn btn-primary">Cadastrar novo cliente</a>
+    </div>
+
+    <script>
+        function carregarClientes() {
+            const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+            const tabela = document.getElementById('clientesTabela');
+            tabela.innerHTML = ''; 
+
+            clientes.forEach((cliente, index) => {
+                const tr = document.createElement('tr');
+
+                tr.innerHTML = `
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefone}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editarCliente(${index})">Editar</button>
+                        <button class="btn btn-danger" onclick="excluirCliente(${index})">Excluir</button>
+                    </td>
+                `;
+
+                tabela.appendChild(tr);
+            });
+        }
+
+        function excluirCliente(index) {
+            let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+            clientes.splice(index, 1);
+            localStorage.setItem('clientes', JSON.stringify(clientes));
+            carregarClientes();
+        }
+ 
+        function editarCliente(index) {
+            let clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+            let cliente = clientes[index];
+           
+            let novoNome = prompt("Novo nome:", cliente.nome);
+            let novoEmail = prompt("Novo email:", cliente.email);
+            let novoTelefone = prompt("Novo telefone:", cliente.telefone);
+ 
+            if (novoNome && novoEmail && novoTelefone) {
+                clientes[index] = { ...cliente, nome: novoNome, email: novoEmail, telefone: novoTelefone };
+                localStorage.setItem('clientes', JSON.stringify(clientes));
+                carregarClientes();
+            }
+        }
+ 
+
+        function excluirCliente(index) {
+            const clientes = JSON.parse(localStorage.getItem('clientes'));
+            clientes.splice(index, 1); // Remove o cliente do array
+            localStorage.setItem('clientes', JSON.stringify(clientes));
+
+            carregarClientes();
+        }
+        window.onload = carregarClientes;
+    </script>
+
+</body>
+</html>

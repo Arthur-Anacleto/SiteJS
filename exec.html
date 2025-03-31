@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <label>Porfavor, Informe o seu nome:</label>
+    <input id="nome" type="text" placeholder="EX: nome">
+    <label>Por favor, informe sua idade:</label>
+    <input id="idade" type="text" placeholder="Ex: 2, 3 anos">
+    <button onclick="verificaIdade()">Verificar</button>
+
+    <p></p>
+
+    <script>
+        function verificaIdade() {
+            var nomeDigitado = document.getElementById('nome')
+            var idadeDigitada = document.getElementById('idade')
+            var faixaEtaria = null
+
+            if (nomeDigitado.value === '' || idadeDigitada.value === '') {
+                alert('é obrigado Nome e idade')
+                nomeDigitado.focus()
+                return
+            }
+            if (idadeDigitada.value >= 18) {
+                faixaEtaria = 'maior'
+            } else {
+                faixaEtaria = 'menor'
+            }
+
+            var paragrafo = document.getElementsByTagName('p')
+            paragrafo[0].innerHTML  = 'Olá ' + nomeDigitado.value + ', você é ' + faixaEtaria + 'de idade.'
+            nomeDigitado.value = ''
+            idadeDigitada.value = ''
+        }
+     </script>
+</body>
+</html>

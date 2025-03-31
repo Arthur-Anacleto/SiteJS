@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: lightgray;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body onload="listar()">
+    <h2>Arrays:</h2>
+    <label>Informe o veículo que deseja adicionar:</label>
+    <input type="text" placeholder="Ex: Corsa" id="carro" />
+    <button onclick="add()">Inserir</button>
+
+    <hr />
+    <p>Carros: <span id="garagem"></span></p>
+    <ul>
+        <!--Item inserido via JavaScript--> 
+    </ul>
+
+    <script>
+        const cars = ['Opala', 'Fusca', 'TL'];
+        cars.push('Kombi');
+        cars.unshift('Motoca');
+
+        document.getElementById('garagem').innerHTML = cars.toString();
+
+        function listar() {
+            let itemLista = '';
+            for (let index = 0; index < cars.length; index++) {
+                itemLista += '<li>' + cars[index] + '</li>';
+            }
+            document.getElementsByTagName('ul')[0].innerHTML = itemLista;
+        }
+
+        function add() {
+            var carro = document.getElementById('carro');
+            if (carro.value.trim() !== '') {
+                cars.push(carro.value);
+                listar();
+                carro.value = '';  // Limpa o campo de entrada
+            } else {
+                alert('Digite um nome de veículo!');
+            }
+        }
+    </script>
+</body>
+
+</html>
